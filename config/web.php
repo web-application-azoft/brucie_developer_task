@@ -43,15 +43,20 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
     ],
+            
+    'modules' => [
+        'shipping' => [
+            'class' => 'app\Modules\shipping\ShippingModule',
+        ],
+    ],
+    
     'params' => $params,
 ];
 

@@ -19,10 +19,10 @@ $form = ActiveForm::begin([
     </div>
     <table border="1">
         <tr>
-            <TH rowspan="2">Ordered bananas count<TH>
-            <TH colspan="<?= count($results[0]['banknotes']) ?>">Package weight<TH>
-            <TH rowspan="2">Sended bananas count<TH>
-            <TH rowspan="2">Sended packages count<TH>
+            <TH rowspan="2">Ordered bananas count</TH>
+            <TH colspan="<?= count($results[0]['banknotes']) ?>">Package weight</TH>
+            <TH rowspan="2">Sended bananas count</TH>
+            <TH rowspan="2">Sended packages count</TH>
         </tr>
         <tr>
             <?php
@@ -33,6 +33,24 @@ $form = ActiveForm::begin([
             }
             ?>
         </tr>
-
+    <?php
+    
+    foreach ($results as $r) {
+        ?>
+                <?php
+                echo '<TR>';
+                echo '<TD>'.$r['orderedCount'].'</TD>';
+                foreach ($r['vector'] as $v) {
+                    echo '<TD>'.$v.'</TD>';
+                }
+                echo '<TD>'.$r['bananasToSend'].'</TD>';
+                echo '<TD>'.$r['packageCount'].'</TD>';
+                echo '</TR>';
+                ?>
+            
+        
+    <?php
+    }
+    ?>
     </table>
 <?php ActiveForm::end() ?>
