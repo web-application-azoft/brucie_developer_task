@@ -28,13 +28,15 @@ $config = [
         'db' => $db,
     ],
     'params' => $params,
-    /*
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.
             'class' => 'yii\faker\FixtureController',
         ],
+        'migrate-shipping' => [
+            'class' => 'yii\console\controllers\MigrateController',
+            'migrationPath' => '@app/Modules/shipping/migrations', // disable non-namespaced migrations if app\migrations is listed below
+        ],
     ],
-    */
 ];
 
 if (YII_ENV_DEV) {
