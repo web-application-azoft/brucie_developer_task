@@ -22,13 +22,27 @@ class ShippingForm extends Model {
     public function rules()
     {
         return [
-            //['package', 'each', 'rule' => ['integer']],
             ['package', 'string'],
             ['package', 'required'],
+            ['package', 'filter', 'filter' => [$this, 'normalizeData']],
         ];
     }
     
-    
+    /**
+     * Filters string, delete everything except numbers, symbol "," and whitespaces
+     * @param string $value
+     * @return string
+     */
+    public function normalizeData($value) {
+        $output = preg_replace( '/[^0-9,]/', '', $value );
+        $output = str_replace(' ','',$output);
+        return $output ;
+    }
+
+    /**
+     * Main function of our module
+     * @return string
+     */    
     public function calculate()
     {
         $module=\Yii::$app->getModule('shipping');

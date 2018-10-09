@@ -20,7 +20,7 @@ class DefaultController extends Controller
         
         $results=null;
         
-        if ($model->load(\Yii::$app->request->post())) {
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
             $results=$model->calculate();
         }
         
