@@ -20,36 +20,37 @@ $form = ActiveForm::begin([
     <table border="1">
         <tr>
             <TH rowspan="2">Ordered bananas count</TH>
-            <TH colspan="<?= count($results[0]['banknotes']) ?>">Package weight</TH>
+            <TH colspan="<?= ($results ? count($results[0]['banknotes']) : 1) ?>">Package weight</TH>
             <TH rowspan="2">Sended bananas count</TH>
             <TH rowspan="2">Sended packages count</TH>
         </tr>
         <tr>
             <?php
-            if ($results) {
+            if ($results&&$results[0]) {
                 foreach ($results[0]['banknotes'] as $v) {
                     echo '<TH>' . $v . '</TH>';
                 }
-            }
+            } 
             ?>
         </tr>
     <?php
-    
-    foreach ($results as $r) {
-        ?>
-                <?php
-                echo '<TR>';
-                echo '<TD>'.$r['orderedCount'].'</TD>';
-                foreach ($r['vector'] as $v) {
-                    echo '<TD>'.$v.'</TD>';
-                }
-                echo '<TD>'.$r['bananasToSend'].'</TD>';
-                echo '<TD>'.$r['packageCount'].'</TD>';
-                echo '</TR>';
-                ?>
-            
-        
-    <?php
+    if ($results) {
+        foreach ($results as $r) {
+            ?>
+                    <?php
+                    echo '<TR>';
+                    echo '<TD>'.$r['orderedCount'].'</TD>';
+                    foreach ($r['vector'] as $v) {
+                        echo '<TD>'.$v.'</TD>';
+                    }
+                    echo '<TD>'.$r['bananasToSend'].'</TD>';
+                    echo '<TD>'.$r['packageCount'].'</TD>';
+                    echo '</TR>';
+                    ?>
+
+
+        <?php
+        }
     }
     ?>
     </table>
